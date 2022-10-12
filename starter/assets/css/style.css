@@ -1,29 +1,10 @@
 .pace {
-    display: none;
+  display: none;
 }
 
 .main-style {
-    min-height: 100vh;
-    background: url(../img/cover/cover-scrum-board.png) no-repeat fixed;
-    background-size: 360px;
-    background-position: right bottom;
-}
-/* Mobile First*/
-.olItem {
-    display: flex;
-    flex-direction: row;
-}
-.navItems {
-    list-style-type: none;
-}
-.navItems a {
-    text-decoration: none;
-}
-.toDoBox {
-    padding: 2px;
-}
-.toDo {
-    background-color: black;
-    color: white;
-    font-size: small;
+  min-height: 100vh;
+  background: url(../img/cover/cover-scrum-board.png) no-repeat fixed;
+  background-size: 360px;
+  background-position: right bottom;
 }
