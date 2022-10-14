@@ -35,7 +35,7 @@
 				</div>
 				
 				<div class="col-6 text-end">
-					<button class="p-2 text-white rounded-pill" style="background-color: #E94560;"><i class="bi bi-plus"></i>Add Task</a>
+					<button class="p-2 text-white rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-task" style="background-color: #E94560;"><i class="bi bi-plus"></i>Add Task</a>
 				</div>
 			</div>
 			<div class="row">
@@ -294,7 +294,61 @@
 	
 	<!-- TASK MODAL -->
 	<div class="modal fade" id="modal-task">
-		<!-- Modal content goes here -->
+		  <div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="background-image: linear-gradient(#E94560, #0F3460); border: none;">
+					<h5 class="modal-title text-white">Add Task</h5>
+				</div>
+				<div class="modal-body" style="background-color: #0F3460;">
+					<div class="">
+						<label class="col-form-label text-white">Title</label>
+						<input type="text" class="form-control" style="background-color: #c8c8c8;">
+					</div>
+					<label class="col-form-label text-white">Type</label>
+					<div class="d-flex">
+						<div class="form-check ms-3">
+							<input name="type" class="form-check-input" type="radio">
+							<label class="form-check-label text-white">Bug</label>
+						</div>
+						<div class="form-check ms-3">
+							<input name="type" class="form-check-input" type="radio"checked>
+							<label class="form-check-label text-white">Feature</label>
+						</div>
+					</div>
+					<div class="">
+						<label class="col-form-label text-white">Priority</label>
+						<select class="form-select" style="background-color: #c8c8c8;">
+							<option selected>Please select</option>
+							<option value="1">Low</option>
+							<option value="2">Medium</option>
+							<option value="3">High</option>
+							<option value="3">Critical</option>
+						</select>
+					</div>
+					<div class="">
+						<label class="col-form-label text-white">Status</label>
+						<select class="form-select" style="background-color: #c8c8c8;">
+							<option selected>Please select</option>
+							<option value="1">To Do</option>
+							<option value="2">In Progress</option>
+							<option value="3">Done</option>
+						</select>
+					</div>
+					<div class="">
+						<label class="col-form-label text-white">Date</label>
+						<input type="date" class="form-control" style="background-color: #c8c8c8;">
+					</div>
+					<div class="">
+						<label class="col-form-label text-white">Description</label>
+						<textarea class="form-control" style="background-color: #c8c8c8;"></textarea>
+					</div>
+				</div>
+				<div class="modal-footer" style="background-color: #0F3460; border: none;">
+					<button type="button" style="background-color: #c8c8c8; color: #E94560; font-weight: bold;" class="btn btn-light border rounded-pill" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" style="background-color: #E94560; font-weight: bold;" class="btn btn-primary rounded-pill text-white">Save</button>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 	<!-- ================== BEGIN core-js ================== -->
