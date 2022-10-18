@@ -64,48 +64,6 @@
               </div>
               <div class="" id="to-do-tasks">
                 <!-- TO DO TASKS HERE -->
-                <button
-                  class="col-12"
-                  style="
-                    background-color: #0f3460;
-                    border: none;
-                    border-bottom: 1px solid white;
-                  "
-                >
-                  <div class="">
-                    <i class=""></i>
-                  </div>
-                  <div class="mt-2 text-start ms-1 mb-1">
-                    <div class="text-white">
-                      <i
-                        class="bi bi-question-circle-fill text-success me-2"
-                      ></i
-                      >Keep all the updated requirements in one place
-                    </div>
-                    <div class="ms-4">
-                      <div class="text-white">#1 created in 2022-10-08</div>
-                      <div
-                        class="text-white"
-                        title="There is hardly anything more frustrating than having to look for current requirements in tens of comments under the actual description or having to decide which commenter is actually authorized to change the requirements. The goal here is to keep all the up-to-date requirements and details in the main/primary description of a task. Even though the information in comments may affect initial criteria, just update this primary description accordingly."
-                      >
-                        There is hardly anything more frustrating than having
-                        t...
-                      </div>
-                    </div>
-                    <div class="mt-2 text-start ms-4 mb-1">
-                      <span
-                        class="btn rounded-3 text-white p-1"
-                        style="background-color: #e94560"
-                        >High</span
-                      >
-                      <span
-                        class="btn rounded-3 p-1"
-                        style="background-color: white; color: #e94560"
-                        >Feature</span
-                      >
-                    </div>
-                  </div>
-                </button>
               </div>
             </div>
           </div>
@@ -121,48 +79,6 @@
               </div>
               <div class="" id="in-progress-tasks">
                 <!-- IN PROGRESS TASKS HERE -->
-                <button
-                  class="col-12"
-                  style="
-                    background-color: #0f3460;
-                    border: none;
-                    border-bottom: 1px solid white;
-                  "
-                >
-                  <div class="">
-                    <i class=""></i>
-                  </div>
-                  <div class="mt-2 text-start ms-1 mb-1">
-                    <div class="text-white">
-                      <i
-                        class="spinner-border text-success spinner-border-sm me-2"
-                        role="status"
-                      ></i
-                      >Describe steps to reproduce an issue
-                    </div>
-                    <div class="ms-4">
-                      <div class="text-white">#6 created in 2022-10-08</div>
-                      <div
-                        class="text-white"
-                        title="including as many details as possible."
-                      >
-                        including as many details as possible.
-                      </div>
-                    </div>
-                    <div class="mt-2 text-start ms-4 mb-1">
-                      <span
-                        class="btn rounded-3 text-white p-1"
-                        style="background-color: #e94560"
-                        >High</span
-                      >
-                      <span
-                        class="btn rounded-3 p-1"
-                        style="background-color: white; color: #e94560"
-                        >Bug</span
-                      >
-                    </div>
-                  </div>
-                </button>
               </div>
             </div>
           </div>
@@ -176,46 +92,6 @@
               </div>
               <div class="" id="done-tasks">
                 <!-- DONE TASKS HERE -->
-                <button
-                  class="col-12"
-                  style="
-                    background-color: #0f3460;
-                    border: none;
-                    border-bottom: 1px solid white;
-                  "
-                >
-                  <div class="">
-                    <i class=""></i>
-                  </div>
-                  <div class="mt-2 text-start ms-1 mb-1">
-                    <div class="text-white">
-                      <i class="bi bi-check-circle-fill text-success me-2"></i
-                      >Provide access to logs
-                    </div>
-                    <div class="ms-4">
-                      <div class="text-white">#10 created in 2022-10-08</div>
-                      <div
-                        class="text-white"
-                        title="as they can be helpful in reproducing the steps that caused the problem in the first place."
-                      >
-                        as they can be helpful in reproducing the steps that
-                        ca...
-                      </div>
-                    </div>
-                    <div class="mt-2 text-start ms-4 mb-1">
-                      <span
-                        class="btn rounded-3 text-white p-1"
-                        style="background-color: #e94560"
-                        >High</span
-                      >
-                      <span
-                        class="btn rounded-3 p-1"
-                        style="background-color: white; color: #e94560"
-                        >Bug</span
-                      >
-                    </div>
-                  </div>
-                </button>
               </div>
             </div>
           </div>
@@ -356,12 +232,7 @@
     <!-- ================== BEGIN core-js ================== -->
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.min.js"></script>
-    <script>
-      src = "assets/js/data.js";
-    </script>
-    <script>
-      src = "assets/js/app.js";
-    </script>
+    <script> src="assets/js/data.js"</script>
     <script>
       let title = document.getElementById("title");
       let dateInput = document.getElementById("dateInput");
@@ -371,6 +242,9 @@
       let status = document.getElementById("status");
       let add = document.getElementById("save");
       let addTask = document.getElementById("to-do-tasks");
+      let toDoTasks = document.getElementById("to-do-tasks");
+      let inProgressTasks = document.getElementById("in-progress-tasks");
+      let doneTasks = document.getElementById("done-tasks");
 
       document.addEventListener("DOMContentLoaded", () => {
         document
@@ -391,29 +265,31 @@
           })();
         }
       };
-
+      let tasks = [];
+      var type_value;
       let acceptData = () => {
-        var type_value;
         for (var i = 0; i < typeInput.length; i++) {
           if (typeInput[i].checked) {
             type_value = typeInput[i].value;
           }
         }
-        let tasks = [];
         let data = {
-          title: title.value,
-          type: type_value,
-          priority: priority.value,
-          status: status.value,
-          date: dateInput.value,
-          desc: desc.value,
+          'title' : title.value,
+          'type' : type_value,
+          'priority' : priority.value,
+          'status' : status.value,
+          'date' : dateInput.value,
+          'desc' : desc.value,
         };
         tasks.push(data);
-        console.log(tasks);
+        taskLoad();
       };
-
-      let createTasks = () => {
-        addTask.innerHTML += `
+      function taskLoad() {
+      var id = 1;
+      for (var i = 0; i < tasks.length; i++) {
+          if (tasks[i].status == "To Do")
+          {
+              toDoTasks.innerHTML += `
       <button
                   class="col-12"
                   style="
@@ -428,34 +304,130 @@
                   <div class="mt-2 text-start ms-1 mb-1">
                     <div class="text-white">
                       <i class="bi bi-check-circle-fill text-success me-2"></i
-                      >${title.value}
+                      >${tasks[i].title}
                     </div>
                     <div class="ms-4">
-                      <div class="text-white">#10 created in ${dateInput.value}</div>
+                      <div class="text-white">#${id} created in ${tasks[i].date}</div>
                       <div
                         class="text-white"
                         title=""
                       >
-                        ${desc.value}
+                        ${tasks[i].desc}
                       </div>
                     </div>
                     <div class="mt-2 text-start ms-4 mb-1">
                       <span
                         class="btn rounded-3 text-white p-1"
                         style="background-color: #e94560"
-                        >${priority.value}</span
+                        >${tasks[i].priority}</span
                       >
                       <span
                         class="btn rounded-3 p-1"
                         style="background-color: white; color: #e94560"
-                        >${type_value}</span
+                        >${tasks[i].type}</span
                       >
                     </div>
                   </div>
                 </button>
       `;
         resetForm();
-      };
+      }
+      else if (tasks[i].status == "In Progress")
+          {
+              inProgressTasks.innerHTML += `
+              <button
+                  class="col-12"
+                  style="
+                    background-color: #0f3460;
+                    border: none;
+                    border-bottom: 1px solid white;
+                  "
+                >
+                  <div class="">
+                    <i class=""></i>
+                  </div>
+                  <div class="mt-2 text-start ms-1 mb-1">
+                    <div class="text-white">
+                      <i
+                        class="spinner-border text-success spinner-border-sm me-2"
+                        role="status"
+                      ></i
+                      >${tasks[i].title}
+                    </div>
+                    <div class="ms-4">
+                      <div class="text-white">#${id} created in ${tasks[i].date}</div>
+                      <div
+                        class="text-white"
+                        title=""
+                      >
+                        ${tasks[i].desc}
+                      </div>
+                    </div>
+                    <div class="mt-2 text-start ms-4 mb-1">
+                      <span
+                        class="btn rounded-3 text-white p-1"
+                        style="background-color: #e94560"
+                        >${tasks[i].priority}</span
+                      >
+                      <span
+                        class="btn rounded-3 p-1"
+                        style="background-color: white; color: #e94560"
+                        >${tasks[i].type}</span
+                      >
+                    </div>
+                  </div>
+                </button>
+      `;
+        resetForm();
+      }
+      else if (tasks[i].status == "Done")
+          {
+              doneTasks.innerHTML += `
+              <button
+                  class="col-12"
+                  style="
+                    background-color: #0f3460;
+                    border: none;
+                    border-bottom: 1px solid white;
+                  "
+                >
+                  <div class="">
+                    <i class=""></i>
+                  </div>
+                  <div class="mt-2 text-start ms-1 mb-1">
+                    <div class="text-white">
+                      <i class="bi bi-check-circle-fill text-success me-2"></i
+                      >${tasks[i].title}
+                    </div>
+                    <div class="ms-4">
+                      <div class="text-white">#${id} created in ${tasks[i].date}</div>
+                      <div
+                        class="text-white"
+                        title=""
+                      >
+                       ${tasks[i].desc}
+                      </div>
+                    </div>
+                    <div class="mt-2 text-start ms-4 mb-1">
+                      <span
+                        class="btn rounded-3 text-white p-1"
+                        style="background-color: #e94560"
+                        >${tasks[i].priority}</span
+                      >
+                      <span
+                        class="btn rounded-3 p-1"
+                        style="background-color: white; color: #e94560"
+                        >${tasks[i].type}</span
+                      >
+                    </div>
+                  </div>
+                </button>
+      `;
+        resetForm();
+      }
+        id++;
+      }
+      }
       let resetForm = () => {
         title.value = "";
         type_value = "";
