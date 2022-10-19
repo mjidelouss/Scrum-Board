@@ -9,7 +9,9 @@ let addTask = document.getElementById("to-do-tasks");
 let toDoTasks = document.getElementById("to-do-tasks");
 let inProgressTasks = document.getElementById("in-progress-tasks");
 let doneTasks = document.getElementById("done-tasks");
+
 taskLoad();
+
 document.addEventListener("DOMContentLoaded", () => {
     document
         .getElementById("save")
@@ -27,7 +29,6 @@ let formValidation = () => {
 };
 var type_value;
 let acceptData = () => {
-    resetTasks();
     for (var i = 0; i < typeInput.length; i++) {
         if (typeInput[i].checked) {
             type_value = typeInput[i].value;
@@ -39,13 +40,17 @@ let acceptData = () => {
         'priority': priority.value,
         'status': statusInput.value,
         'date': dateInput.value,
-        'desc': desc.value,
+        'description': desc.value
     };
     tasks.push(data);
-    resetTasks();
     taskLoad();
+    resetTasks();
 };
+
 function taskLoad() {
+  toDoTasks.innerHTML = "";
+  inProgressTasks.innerHTML = "";
+  doneTasks.innerHTML = "";
     var id = 1;
     for (var i = 0; i < tasks.length; i++) {
         if (tasks[i].status == "To Do") {
@@ -72,7 +77,7 @@ function taskLoad() {
                         class="text-white"
                         title=""
                       >
-                        ${tasks[i].desc}
+                        ${tasks[i].description}
                       </div>
                     </div>
                     <div class="mt-2 text-start ms-4 mb-1">
@@ -118,7 +123,7 @@ function taskLoad() {
                         class="text-white"
                         title=""
                       >
-                        ${tasks[i].desc}
+                        ${tasks[i].description}
                       </div>
                     </div>
                     <div class="mt-2 text-start ms-4 mb-1">
@@ -161,7 +166,7 @@ function taskLoad() {
                         class="text-white"
                         title=""
                       >
-                       ${tasks[i].desc}
+                       ${tasks[i].description}
                       </div>
                     </div>
                     <div class="mt-2 text-start ms-4 mb-1">
@@ -191,14 +196,6 @@ let resetTasks = () => {
     dateInput.value = "";
     desc.value = "";
 };
-
-
-
-
-
-
-
-
 
 
 
