@@ -228,7 +228,125 @@
         </div>
       </div>
     </div>
-
+    
+  <!-- UPDATE & DELETE TASK MODAL -->
+  <div class="modal fade" id="delete-update-task">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div
+          class="modal-header"
+          style="
+            background-image: linear-gradient(#e94560, #0f3460);
+            border: none;
+          "
+        >
+          <h5 class="modal-title text-white">Task</h5>
+        </div>
+        <div class="modal-body" style="background-color: #0f3460">
+          <div class="" id="taskForm">
+            <label class="col-form-label text-white">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              style="background-color: #c8c8c8"
+              id="title"
+            />
+          </div>
+          <label class="col-form-label text-white" id="typ">Type</label>
+          <div class="d-flex">
+            <div class="form-check ms-3">
+              <input
+                name="type"
+                value="Bug"
+                class="form-check-input"
+                type="radio"
+              />
+              <label class="form-check-label text-white">Bug</label>
+            </div>
+            <div class="form-check ms-3">
+              <input
+                name="type"
+                value="Feature"
+                class="form-check-input"
+                type="radio"
+                checked
+              />
+              <label class="form-check-label text-white">Feature</label>
+            </div>
+          </div>
+          <div class="">
+            <label class="col-form-label text-white">Priority</label>
+            <select
+              class="form-select"
+              style="background-color: #c8c8c8"
+              id="priority"
+            >
+              <option disabled selected>Please select</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Critical">Critical</option>
+            </select>
+          </div>
+          <div class="">
+            <label class="col-form-label text-white">Status</label>
+            <select
+              class="form-select"
+              style="background-color: #c8c8c8"
+              id="status"
+            >
+              <option disabled selected>Please select</option>
+              <option value="To Do">To Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
+          <div class="">
+            <label class="col-form-label text-white">Date</label>
+            <input
+              type="date"
+              class="form-control"
+              style="background-color: #c8c8c8"
+              id="dateInput"
+            />
+          </div>
+          <div class="">
+            <label class="col-form-label text-white">Description</label>
+            <textarea
+              class="form-control"
+              style="background-color: #c8c8c8"
+              id="desc"
+            ></textarea>
+          </div>
+        </div>
+        <div
+          class="modal-footer"
+          style="background-color: #0f3460; border: none"
+        >
+          <button
+            type="button"
+            style="
+              background-color: #c8c8c8;
+              color: #e94560;
+              font-weight: bold;
+            "
+            class="btn btn-light border rounded-pill"
+          >
+          DELETE
+          </button>
+          <button
+            type="submit"
+            id="save"
+            style="background-color: #e94560; font-weight: bold"
+            class="btn btn-primary rounded-pill text-white"
+          >
+          UPDATE
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
     <!-- ================== BEGIN core-js ================== -->
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/data.js"></script>
