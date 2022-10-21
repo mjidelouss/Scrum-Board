@@ -60,7 +60,7 @@
                 class="col-12 text-white p-2 rounded-top"
                 style="background-image: linear-gradient(#e94560, #0f3460)"
               >
-                <h4 class="">To do (<span id="to-do-tasks-count">5</span>)</h4>
+                <h4 class="">To do (<span id="to-do-tasks-count"></span>)</h4>
               </div>
               <div class="" id="to-do-tasks">
                 <!-- TO DO TASKS HERE -->
@@ -131,6 +131,7 @@
                 class="form-control"
                 style="background-color: #c8c8c8"
                 id="title"
+                required
               />
             </div>
             <label class="col-form-label text-white" id="typ">Type</label>
@@ -141,6 +142,7 @@
                   value="Bug"
                   class="form-check-input"
                   type="radio"
+                  required
                 />
                 <label class="form-check-label text-white">Bug</label>
               </div>
@@ -150,7 +152,7 @@
                   value="Feature"
                   class="form-check-input"
                   type="radio"
-                  checked
+                  required
                 />
                 <label class="form-check-label text-white">Feature</label>
               </div>
@@ -161,6 +163,7 @@
                 class="form-select"
                 style="background-color: #c8c8c8"
                 id="priority"
+                required
               >
                 <option disabled selected>Please select</option>
                 <option value="Low">Low</option>
@@ -175,6 +178,7 @@
                 class="form-select"
                 style="background-color: #c8c8c8"
                 id="status"
+                required
               >
                 <option disabled selected>Please select</option>
                 <option value="To Do">To Do</option>
@@ -189,6 +193,7 @@
                 class="form-control"
                 style="background-color: #c8c8c8"
                 id="dateInput"
+                required
               />
             </div>
             <div class="">
@@ -197,6 +202,7 @@
                 class="form-control"
                 style="background-color: #c8c8c8"
                 id="desc"
+                required
               ></textarea>
             </div>
           </div>
@@ -228,7 +234,7 @@
         </div>
       </div>
     </div>
-    
+
   <!-- UPDATE & DELETE TASK MODAL -->
   <div class="modal fade" id="delete-update-task">
     <div class="modal-dialog">
@@ -249,7 +255,7 @@
               type="text"
               class="form-control"
               style="background-color: #c8c8c8"
-              id="title"
+              id="update_title"
             />
           </div>
           <label class="col-form-label text-white" id="typ">Type</label>
@@ -260,6 +266,7 @@
                 value="Bug"
                 class="form-check-input"
                 type="radio"
+                id="bug"
               />
               <label class="form-check-label text-white">Bug</label>
             </div>
@@ -269,7 +276,7 @@
                 value="Feature"
                 class="form-check-input"
                 type="radio"
-                checked
+                id="feature"
               />
               <label class="form-check-label text-white">Feature</label>
             </div>
@@ -279,7 +286,7 @@
             <select
               class="form-select"
               style="background-color: #c8c8c8"
-              id="priority"
+              id="update_priority"
             >
               <option disabled selected>Please select</option>
               <option value="Low">Low</option>
@@ -293,7 +300,7 @@
             <select
               class="form-select"
               style="background-color: #c8c8c8"
-              id="status"
+              id="update_status"
             >
               <option disabled selected>Please select</option>
               <option value="To Do">To Do</option>
@@ -307,7 +314,7 @@
               type="date"
               class="form-control"
               style="background-color: #c8c8c8"
-              id="dateInput"
+              id="update_dateInput"
             />
           </div>
           <div class="">
@@ -315,7 +322,7 @@
             <textarea
               class="form-control"
               style="background-color: #c8c8c8"
-              id="desc"
+              id="update_desc"
             ></textarea>
           </div>
         </div>
