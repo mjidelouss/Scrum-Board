@@ -1,19 +1,22 @@
-// Tasks Load variables
+// Task variables
 const title = document.getElementById("title");
 const dateInput = document.getElementById("dateInput");
 const typeInput = document.getElementsByName("type");
 const desc = document.getElementById("desc");
 const priority = document.getElementById("priority");
 const statusInput = document.getElementById("status");
-const add = document.getElementById("save");
-const addTask = document.getElementById("to-do-tasks");
+
+// Tables Variables
 const toDoTasks = document.getElementById("to-do-tasks");
 const inProgressTasks = document.getElementById("in-progress-tasks");
 const doneTasks = document.getElementById("done-tasks");
 const modelFooter = document.getElementById("modalFooter");
-const toDoTaskCount = document.getElementById('to-do-tasks-count');
-const inProgressTaskCount = document.getElementById('in-progress-tasks-count');
-const doneTaskCount = document.getElementById('done-tasks-count');
+
+// Tasks Count Variables
+const toDoTaskCount = document.getElementById("to-do-tasks-count");
+const inProgressTaskCount = document.getElementById("in-progress-tasks-count");
+const doneTaskCount = document.getElementById("done-tasks-count");
+
 // update & delete model variables
 const updateTitle = document.getElementById("update_title");
 const updateDate = document.getElementById("update_dateInput");
@@ -21,53 +24,43 @@ const updateDesc = document.getElementById("update_desc");
 const updateStatus = document.getElementById("update_status");
 const updatePriority = document.getElementById("update_priority");
 
+// Variables Declarations
 let toDoCount = 0;
 let inProgressCount = 0;
 let doneCount = 0;
+var type_value;
+
 taskLoad();
-console.log(tasks);
 document.addEventListener("DOMContentLoaded", () => {
-    document
-        .getElementById("save")
-        .addEventListener("click", formValidation);
+  document.getElementById("save").addEventListener("click", checkValidForm);
 });
 
-// document.getElementById("update").addEventListener("click", );
-
-function formValidation(){
-    if (title.value === "") {
-        console.log("failure");
-    } else {
-        console.log("success");
-        addTasks();
-        $('#modal-task').modal('hide')
-        // Swal.fire(
-        //   'Good job!',
-        //   'You clicked the button!',
-        //   'success'
-        //  )
-    }
+function checkValidForm(){
+  if (title.value === "") {
+    console.log("failure");
+  } else {
+    console.log("success");
+    addTasks();
+    $("#modal-task").modal("hide");
+    Swal.fire("Added Successfully", "Good Job!", "success");
+  }
 }
-var type_value;
-function addTasks(){
-    for (var i = 0; i < typeInput.length; i++) {
-        if (typeInput[i].checked) {
-            type_value = typeInput[i].value;
-        }
-    }
-    let data = {
-        'title': title.value,
-        'type': type_value,
-        'priority': priority.value,
-        'status': statusInput.value,
-        'date': dateInput.value,
-        'description': desc.value
-    };
-    tasks.push(data);
-    taskLoad();
-    resetTasks();
+// Add Task Function
+function addTasks() {
+  getType(typeInput, type_value);
+  let data = {
+    title: title.value,
+    type: type_value,
+    priority: priority.value,
+    status: statusInput.value,
+    date: dateInput.value,
+    description: desc.value,
+  };
+  tasks.push(data);
+  taskLoad();
+  resetTasks();
 }
-
+// Load Tasks Function
 function taskLoad() {
   toDoTasks.innerHTML = "";
   inProgressTasks.innerHTML = "";
@@ -75,10 +68,10 @@ function taskLoad() {
   toDoCount = 0;
   inProgressCount = 0;
   doneCount = 0;
-    for (var i = 0; i < tasks.length; i++) {
-        if (tasks[i].status == "To Do") {
-            toDoCount++;
-            toDoTasks.innerHTML += `
+  for (var i = 0; i < tasks.length; i++) {
+    if (tasks[i].status == "To Do") {
+      toDoCount++;
+      toDoTasks.innerHTML += `
                 <button
                 data-bs-toggle="modal"
                 data-bs-target="#delete-update-task"
@@ -99,12 +92,14 @@ function taskLoad() {
                       >${tasks[i].title}
                     </div>
                     <div class="ms-4">
-                      <div class="text-white">#${i+1} created in ${tasks[i].date}</div>
+                      <div class="text-white">#${i + 1} created in ${
+        tasks[i].date
+      }</div>
                       <div
                         class="text-white"
                         title=""
                       >
-                        ${tasks[i].description.slice(0,55)}...
+                        ${tasks[i].description.slice(0, 60)}...
                       </div>
                     </div>
                     <div class="mt-2 text-start ms-4 mb-1">
@@ -122,10 +117,9 @@ function taskLoad() {
                   </div>
                 </button>
       `;
-        }
-        else if (tasks[i].status == "In Progress") {
-            inProgressCount++;
-            inProgressTasks.innerHTML += `
+    } else if (tasks[i].status == "In Progress") {
+      inProgressCount++;
+      inProgressTasks.innerHTML += `
               <button
               data-bs-toggle="modal"
               data-bs-target="#delete-update-task"
@@ -149,12 +143,14 @@ function taskLoad() {
                       >${tasks[i].title}
                     </div>
                     <div class="ms-4">
-                      <div class="text-white">#${i+1} created in ${tasks[i].date}</div>
+                      <div class="text-white">#${i + 1} created in ${
+        tasks[i].date
+      }</div>
                       <div
                         class="text-white"
                         title=""
                       >
-                        ${tasks[i].description.slice(0,55)}...
+                        ${tasks[i].description.slice(0, 60)}...
                       </div>
                     </div>
                     <div class="mt-2 text-start ms-4 mb-1">
@@ -172,10 +168,9 @@ function taskLoad() {
                   </div>
                 </button>
       `;
-        }
-        else if (tasks[i].status == "Done") {
-            doneCount++;
-            doneTasks.innerHTML += `
+    } else if (tasks[i].status == "Done") {
+      doneCount++;
+      doneTasks.innerHTML += `
               <button
               onclick="initializeTask(${i})"
               data-bs-toggle="modal"
@@ -197,12 +192,14 @@ function taskLoad() {
                       >${tasks[i].title}
                     </div>
                     <div class="ms-4">
-                      <div class="text-white">#${i+1} created in ${tasks[i].date}</div>
+                      <div class="text-white">#${i + 1} created in ${
+        tasks[i].date
+      }</div>
                       <div
                         class="text-white"
                         title=""
                       >
-                       ${tasks[i].description.slice(0,60)}...
+                       ${tasks[i].description.slice(0, 60)}...
                       </div>
                     </div>
                     <div class="mt-2 text-start ms-4 mb-1">
@@ -220,24 +217,24 @@ function taskLoad() {
                   </div>
                 </button>
       `;
-        }
     }
-    toDoTaskCount.innerText = toDoCount;
-    inProgressTaskCount.innerText = inProgressCount;
-    doneTaskCount.innerText = doneCount;
+  }
+  toDoTaskCount.innerText = toDoCount;
+  inProgressTaskCount.innerText = inProgressCount;
+  doneTaskCount.innerText = doneCount;
 }
-
+// Clear Task Variables Function
 let resetTasks = () => {
-    title.value = "";
-    type_value = "";
-    priority.value = "";
-    statusInput.value = "";
-    dateInput.value = "";
-    desc.value = "";
+  title.value = "";
+  type_value = "";
+  priority.value = "";
+  statusInput.value = "";
+  dateInput.value = "";
+  desc.value = "";
 };
-
+// Load Task Data Function
 function initializeTask(index) {
-      modelFooter.innerHTML = `<button
+  modelFooter.innerHTML = `<button
       type="button"
       style="
         background-color: #c8c8c8;
@@ -257,7 +254,7 @@ function initializeTask(index) {
         font-weight: bold;
       "
       class="btn btn-light border rounded-pill"
-      onclick="deleteTask(${index+1})"
+      onclick="deleteTask(${index + 1})"
     >
     DELETE
     </button>
@@ -269,41 +266,47 @@ function initializeTask(index) {
     >
     UPDATE
     </button>`;
-    updateTitle.value = tasks[index].title;
-    if (tasks[index].type === "Feature") {
-        document.getElementById("feature").checked = true;
-        document.getElementById("bug").checked = false;
-    } else {
-        document.getElementById("feature").checked = false;
-        document.getElementById("bug").checked = true;
-    }
-    updatePriority.value = tasks[index].priority;
-    updateStatus.value = tasks[index].status;
-    updateDate.value = tasks[index].date;
-    updateDesc.value = tasks[index].description;
+  updateTitle.value = tasks[index].title;
+  if (tasks[index].type === "Feature") {
+    document.getElementById("feature").checked = true;
+    document.getElementById("bug").checked = false;
+  } else {
+    document.getElementById("feature").checked = false;
+    document.getElementById("bug").checked = true;
+  }
+  updatePriority.value = tasks[index].priority;
+  updateStatus.value = tasks[index].status;
+  updateDate.value = tasks[index].date;
+  updateDesc.value = tasks[index].description;
 }
-
-function editTask(index){
-  for (let j = 0; j < typeInput.length; j++) {
-    if (typeInput[j].checked) {
-        type_value = typeInput[j].value;
-    }
+// Update Task Data Function
+function editTask(index) {
+  getType(typeInput, type_value);
+  (tasks[index].title = updateTitle.value),
+    (tasks[index].type = type_value),
+    (tasks[index].priority = updatePriority.value),
+    (tasks[index].status = updateStatus.value),
+    (tasks[index].date = updateDate.value),
+    (tasks[index].description = updateDesc.value);
+  $("#delete-update-task").modal("hide");
+  Swal.fire("Updated Successfully", "Good Job!", "success");
+  taskLoad();
 }
-  tasks[index].title =  updateTitle.value,
-  tasks[index].type = type_value,
-  tasks[index].priority = updatePriority.value,
-  tasks[index].status = updateStatus.value,
-  tasks[index].date = updateDate.value,
-  tasks[index].description = updateDesc.value
-$('#delete-update-task').modal('hide')
-taskLoad();
-}
-
+// Delete Task from Table Function
 function deleteTask(index) {
   let item = index - 1;
   tasks.splice(item, 1);
   console.log(tasks);
-  $('#delete-update-task').modal('hide');
+  $("#delete-update-task").modal("hide");
+  Swal.fire("Deleted Successfully", "Good Job!", "success");
   taskLoad();
   resetTasks();
+}
+// Get the Type Variable in Task Form Function
+function getType(typeInput, type_value) {
+  for (var i = 0; i < typeInput.length; i++) {
+    if (typeInput[i].checked) {
+      type_value = typeInput[i].value;
+    }
+  }
 }
