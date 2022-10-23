@@ -73,10 +73,11 @@ function taskLoad() {
       toDoCount++;
       toDoTasks.innerHTML += `
                 <button
+                draggable="true"
                 data-bs-toggle="modal"
                 data-bs-target="#delete-update-task"
                 onclick="initializeTask(${i})"
-                  class="col-12"
+                  class="col-12 draggable"
                   style="
                     background-color: #0f3460;
                     border: none;
@@ -121,10 +122,11 @@ function taskLoad() {
       inProgressCount++;
       inProgressTasks.innerHTML += `
               <button
+              draggable="true"
               data-bs-toggle="modal"
               data-bs-target="#delete-update-task"
               onclick="initializeTask(${i})"
-                  class="col-12"
+                  class="col-12 draggable"
                   style="
                     background-color: #0f3460;
                     border: none;
@@ -172,10 +174,11 @@ function taskLoad() {
       doneCount++;
       doneTasks.innerHTML += `
               <button
+              draggable="true"
               onclick="initializeTask(${i})"
               data-bs-toggle="modal"
               data-bs-target="#delete-update-task"
-                  class="col-12"
+                  class="col-12 draggable"
                   style="
                     background-color: #0f3460;
                     border: none;
@@ -224,14 +227,14 @@ function taskLoad() {
   doneTaskCount.innerText = doneCount;
 }
 // Clear Task Variables Function
-let resetTasks = () => {
+function resetTasks(){
   title.value = "";
   type_value = "";
   priority.value = "";
   statusInput.value = "";
   dateInput.value = "";
   desc.value = "";
-};
+}
 // Load Task Data Function
 function initializeTask(index) {
   modelFooter.innerHTML = `<button
@@ -309,4 +312,53 @@ function getType(typeInput, type_value) {
       type_value = typeInput[i].value;
     }
   }
+}
+// Drag and Drop Functions
+const draggables = document.querySelectorAll('.draggable')
+const tables = document.querySelectorAll('.taskTables')
+
+draggables.forEach(draggable => {
+  draggable.addEventListener('dragstart', () => {
+    draggable.classList.add('dragging')
+  })
+  draggable.addEventListener('dragend', () => {
+    draggable.classList.remove('dragging')
+  })
+})
+
+draggables.forEach(draggable => {
+  draggable.addEventListener('dragstart', () => {
+    draggable.classList.add('dragging')
+  })
+
+  draggable.addEventListener('dragend', () => {
+    draggable.classList.remove('dragging')
+  })
+})
+
+tables.forEach(table => {
+  table.addEventListener('dragover', e => {
+    e.preventDefault()
+    const afterElement = getDragAfterElement(table, e.clientY)
+    const draggable = document.querySelector('.dragging')
+    if (afterElement == null) {
+      table.appendChild(draggable)
+    } else {
+      table.insertBefore(draggable, afterElement)
+    }
+  })
+})
+
+function getDragAfterElement(table, y) {
+  const draggableElements = [...table.querySelectorAll('.draggable:not(.dragging)')]
+
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect()
+    const offset = y - box.top - box.height / 2
+    if (offset < 0 && offset > closest.offset) {
+      return { offset: offset, element: child }
+    } else {
+      return closest
+    }
+  }, { offset: Number.NEGATIVE_INFINITY }).element
 }
