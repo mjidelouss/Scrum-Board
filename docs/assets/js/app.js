@@ -73,7 +73,6 @@ function taskLoad() {
       toDoCount++;
       toDoTasks.innerHTML += `
                 <button
-                draggable="true"
                 data-bs-toggle="modal"
                 data-bs-target="#delete-update-task"
                 onclick="initializeTask(${i})"
@@ -122,7 +121,6 @@ function taskLoad() {
       inProgressCount++;
       inProgressTasks.innerHTML += `
               <button
-              draggable="true"
               data-bs-toggle="modal"
               data-bs-target="#delete-update-task"
               onclick="initializeTask(${i})"
@@ -174,7 +172,6 @@ function taskLoad() {
       doneCount++;
       doneTasks.innerHTML += `
               <button
-              draggable="true"
               onclick="initializeTask(${i})"
               data-bs-toggle="modal"
               data-bs-target="#delete-update-task"
@@ -184,7 +181,6 @@ function taskLoad() {
                     border: none;
                     border-bottom: 1px solid white;
                   "
-                  
                 >
                   <div class="">
                     <i class=""></i>
@@ -265,7 +261,7 @@ function initializeTask(index) {
       type="submit"
       style="background-color: green; font-weight: bold"
       class="btn btn-primary rounded-pill text-white"
-      onClick="editTask(${index})"
+      onClick="updateTask(${index})"
     >
     UPDATE
     </button>`;
@@ -283,7 +279,7 @@ function initializeTask(index) {
   updateDesc.value = tasks[index].description;
 }
 // Update Task Data Function
-function editTask(index) {
+function updateTask(index) {
   getType(typeInput, type_value);
   (tasks[index].title = updateTitle.value),
     (tasks[index].type = type_value),
