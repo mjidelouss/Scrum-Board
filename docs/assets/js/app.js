@@ -47,7 +47,11 @@ function checkValidForm(){
 }
 // Add Task Function
 function addTasks() {
-  getType(typeInput, type_value);
+  for (var i = 0; i < typeInput.length; i++) {
+    if (typeInput[i].checked) {
+      type_value = typeInput[i].value;
+    }
+  }
   let data = {
     title: title.value,
     type: type_value,
@@ -280,7 +284,11 @@ function initializeTask(index) {
 }
 // Update Task Data Function
 function updateTask(index) {
-  getType(typeInput, type_value);
+  for (var i = 0; i < typeInput.length; i++) {
+    if (typeInput[i].checked) {
+      type_value = typeInput[i].value;
+    }
+  }
   (tasks[index].title = updateTitle.value),
     (tasks[index].type = type_value),
     (tasks[index].priority = updatePriority.value),
@@ -300,12 +308,4 @@ function deleteTask(index) {
   Swal.fire("Deleted Successfully", "Good Job!", "success");
   taskLoad();
   resetTasks();
-}
-// Get the Type Variable in Task Form Function
-function getType(typeInput, type_value) {
-  for (var i = 0; i < typeInput.length; i++) {
-    if (typeInput[i].checked) {
-      type_value = typeInput[i].value;
-    }
-  }
 }
